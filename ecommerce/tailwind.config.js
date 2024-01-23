@@ -8,11 +8,13 @@ export default {
     extend: {
       colors: {
         violate: "#111928",
+        lightbg: "#1f2a37",
         primary: "#1c64f2",
-        light: "#63738e",
-        lightbg: "#1f2a37"
+        "light-body-text": "#63738e",
+        "secondary-text": "#9CA3AF",
+        "primary-border": "#333d4c",
       },
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: ["prettier-plugin-tailwindcss"],
 };
