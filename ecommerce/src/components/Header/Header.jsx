@@ -8,9 +8,16 @@ import SecondaryHeader from "./SecondaryHeader";
 import Search from "../Search";
 import IconContainer from "../IconContainer";
 import { IoCartOutline } from "react-icons/io5";
+import authService from "../../Firebase/authService";
+import { auth } from "../../Firebase/config";
+import { useDispatch } from "react-redux";
+import { login, logout } from "../../Redux/authSlice";
+
 
 function Header() {
+  const dispatch = useDispatch();
   const location = useLocation();
+    console.log('auth',auth);
 
   return (
     <>
@@ -32,15 +39,21 @@ function Header() {
                 <li>
                   <NavLink to="/login">Login</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/register">Register</NavLink>
-                </li>
+
                 <li>
                   <NavLink to="/cart">cart</NavLink>
                 </li>
               </ul>
             </nav>
             {/* <Search /> */}
+            <span
+              onClick={() => {
+                authService.logout();
+                dispatch(logout())
+              }}
+            >
+              Logout
+            </span>
             <IconContainer>
               <IoCartOutline className="stroke-2 size-6" />
             </IconContainer>

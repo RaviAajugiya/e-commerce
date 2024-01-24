@@ -3,7 +3,13 @@ import Container from "../container";
 import Product from "./Product";
 import DummyProduct from "./../../assets/DummyProduct.png";
 import TrendingProduct from "./TrendingProduct";
+
+
+
 function ProductContainer({ heading, text }) {
+
+
+
   return (
     <>
       <Container className="bg-lightbg py-14 text-white">
