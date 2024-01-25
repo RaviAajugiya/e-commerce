@@ -1,7 +1,7 @@
 import React from "react";
 import StarRatings from "react-star-ratings";
 
-function Product({ img, title, text, price, className }) {
+function Product({ img, title, text, price, className, rating }) {
   return (
     <div
       className={`text-start m-auto bg-violate rounded-xl w-[350px] ${className}`}
@@ -17,7 +17,7 @@ function Product({ img, title, text, price, className }) {
         <div className="flex justify-between  border-t-2 border-t-[#2b3444]">
           <p className="p-4 flex items-center gap-3">
             <StarRatings
-              rating={4.5}
+              rating={Number(rating)}
               starRatedColor="orange"
               numberOfStars={5}
               name="rating"

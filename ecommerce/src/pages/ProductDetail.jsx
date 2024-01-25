@@ -1,7 +1,7 @@
 import React from "react";
-import Container from "../components/container";
+import Container from "../components/common/Container";
 import StarRatings from "react-star-ratings";
-import Button from "../components/Button";
+import Button from "../components/common/Button";
 
 function ProductDetail() {
   return (
@@ -74,7 +74,7 @@ function ProductDetail() {
             </li>
           </ul>
 
-          <div className="flex gap-5 my-5"> 
+          <div className="flex gap-5 my-5">
             <Button text="Add to cart" className="border-0" />
             <Button text="Buy now" className="border-0" />
           </div>

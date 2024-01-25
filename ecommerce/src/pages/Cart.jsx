@@ -1,6 +1,6 @@
 import React from "react";
 import CartItem from "../components/Cart/CartItem";
-import Container from "../components/container";
+import Container from "../components/common/Container";
 
 function Cart() {
   return (
@@ -26,7 +26,7 @@ function Cart() {
             <span>Discount</span> <span>-$18</span>
           </p>
           <p className="flex justify-between mb-2 text-xl pt-4 border-t border-dashed ">
-            <span >Total payable</span> <span>$100</span>
+            <span>Total payable</span> <span>$100</span>
           </p>
 
           {/* <div>

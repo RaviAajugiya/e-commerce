@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import DynamicForm from "../components/form/DynamicForm";
-import Button from "./../components/Button.jsx";
+import Button from "../components/common/Button.jsx";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../Redux/authSlice.js";
 
 function Login() {
-
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,6 +69,17 @@ function Login() {
     formik.handleChange(e);
   };
 
+  const googleLogin = async () => {
+    try {
+      const res = await authService.loginWithGoogle();
+      console.log("Google login successful", res.user.uid);
+      dispatch(login(res.user.uid));
+      navigate("/");
+    } catch (error) {
+      console.error("Google login failed:", error.message);
+    }
+  };
+
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 text-white">
       <div className="flex justify-center items-center flex-col">
@@ -119,13 +129,10 @@ function Login() {
             <span className="relative bottom-[0.85rem] bg-violate px-4 text-center">
               Or continue with
             </span>
+            <div className="" onClick={() => googleLogin()}>
+              <Button text="Google" className="border-0 m-auto mt-3" />
+            </div>
           </div>
-          <Button
-            text="Google"
-            className="m-auto border-0 flex items-center gap-3"
-          >
-            {/* <FcGoogle /> */}
-          </Button>
         </form>
       </div>
     </div>

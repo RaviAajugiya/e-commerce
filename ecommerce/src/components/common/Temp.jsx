@@ -1,6 +1,6 @@
 import React from "react";
 import { collection, doc, setDoc } from "firebase/firestore";
-import { db } from "../Firebase/config";
+import { db } from "../../Firebase/config";
 
 function Temp() {
   const citiesRef = collection(db, "cities");

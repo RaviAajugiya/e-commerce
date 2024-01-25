@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DummyImage from "./../../../dist/assets/DummyProduct-zcKuMWvU.png";
-import Container from "../container";
+import Container from "../common/Container";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 
 function CartItem() {

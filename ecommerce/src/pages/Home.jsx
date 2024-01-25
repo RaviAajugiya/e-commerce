@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../components/container";
+import Container from "../components/common/Container";
 import ProductContainer from "../components/product-container/ProductContainer";
 
 function Home() {

@@ -1,10 +1,10 @@
 import React from "react";
-import Container from "../container";
+import Container from "../common/Container";
 import { BsTruck } from "react-icons/bs";
 import { MdOutlinePayments } from "react-icons/md";
 import { BsWallet } from "react-icons/bs";
 import Service from "./Service";
-import Logo from "../Logo";
+import Logo from "../common/Logo";
 import { PiClockAfternoon, PiPhoneCall } from "react-icons/pi";
 import { MdOutlineEmail } from "react-icons/md";
 import Icon from "@mdi/react";

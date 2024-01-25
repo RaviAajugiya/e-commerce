@@ -1,64 +1,73 @@
-// import { Firestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore";
+import { db } from "./config";
 
+export class ProductService {
+  getProducts = async () => {
+    console.log("get all");
 
-import { collection, doc, setDoc } from "firebase/firestore";
+    try {
+      const querySnapshot = await getDocs(collection(db, "product"));
+      return await querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      throw error;
+    }
+  };
 
-const citiesRef = collection(db, "cities");
+  addProduct = async (newProductData) => {
+    console.log("add");
 
-await setDoc(doc(citiesRef, "SF"), {
-  name: "San Francisco",
-  state: "CA",
-  country: "USA",
-  capital: false,
-  population: 860000,
-  regions: ["west_coast", "norcal"],
-});
-await setDoc(doc(citiesRef, "LA"), {
-  name: "Los Angeles",
-  state: "CA",
-  country: "USA",
-  capital: false,
-  population: 3900000,
-  regions: ["west_coast", "socal"],
-});
-await setDoc(doc(citiesRef, "DC"), {
-  name: "Washington, D.C.",
-  state: null,
-  country: "USA",
-  capital: true,
-  population: 680000,
-  regions: ["east_coast"],
-});
-await setDoc(doc(citiesRef, "TOK"), {
-  name: "Tokyo",
-  state: null,
-  country: "Japan",
-  capital: true,
-  population: 9000000,
-  regions: ["kanto", "honshu"],
-});
-await setDoc(doc(citiesRef, "BJ"), {
-  name: "Beijing",
-  state: null,
-  country: "China",
-  capital: true,
-  population: 21500000,
-  regions: ["jingjinji", "hebei"],
-});
+    try {
+      const docRef = await addDoc(collection(db, "product"), newProductData);
+      console.log("Product added with ID: ", docRef.id);
+      return docRef.id;
+    } catch (error) {
+      console.error("Error adding product:", error);
+      throw error;
+    }
+  };
 
-// export class ProductService {
-//   getProducts = async () => {
-//     try {
-//       const productsCollection = await Firestore.collection("products").get();
-//       const productsData = productsCollection.docs.map((doc) => doc.data());
-//       console.log(productsData);
-//     } catch (error) {
-//       console.error("Error fetching products:", error);
-//       throw error;
-//     }
-//   };
-// }
+  getLatestProducts = async () => {
+    console.log('latest');
+    const productRef = collection(db, "product");
+    try {
+      const q = query(productRef, orderBy("date", "desc"), limit(3));
+      const querySnapshot = await getDocs(q);
 
-// const productService = new ProductService();
+      const latestProducts = querySnapshot.docs.map((doc) => doc.data());
+      return latestProducts;
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      throw error;
+    }
+  };
 
-// export default productService;
+  getTrendingProducts = async () => {
+    console.log("trending");
+
+    const productRef = collection(db, "product");
+    try {
+      const q = query(productRef, orderBy("rating", "desc"), limit(6));
+      const querySnapshot = await getDocs(q);
+
+      const latestProducts = querySnapshot.docs.map((doc) => doc.data());
+      return latestProducts;
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      throw error;
+    }
+  };
+}
+
+const productService = new ProductService();
+export default productService;

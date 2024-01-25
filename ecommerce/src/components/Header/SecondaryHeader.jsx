@@ -2,8 +2,8 @@ import React from "react";
 import bgImage1 from "./../../assets/bg-1.jpg";
 import bgImage2 from "./../../assets/image-02.jpg";
 import bgImage3 from "./../../assets/image-03.jpg";
-import Container from "../container";
-import Button from "../Button";
+import Container from "../common/Container";
+import Button from "../common/Button";
 
 function SecondaryHeader() {
   return (
