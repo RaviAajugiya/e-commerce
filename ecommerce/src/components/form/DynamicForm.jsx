@@ -1,7 +1,6 @@
 import React from "react";
 import FormField from "./FormField";
 
-
 const DynamicForm = ({ fields, values, onChange, errors, touched }) => {
   return (
     <>
